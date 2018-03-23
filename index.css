@@ -1,0 +1,128 @@
+/* GLOBAL */
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: verdana;
+  background-color: #281a29;
+  color: #fffdad;
+  height: 100%;
+}
+
+body p {
+  font-size: 16px;
+}
+
+.container {
+  text-align: center;
+}
+
+/* HOMEPAGE */
+#homepage {
+  text-align: center;
+}
+
+#homepage .title {
+  font-size: 40px;
+}
+
+#description div {
+  max-width: 80%;
+  margin: auto;
+  padding-top: 20px;
+}
+
+#continueButton {
+  padding-top: 60px;
+}
+
+#continueButton div {
+  min-height: 10%;
+  max-width: 50%;
+  margin: auto;
+  background-color: #fffdad;
+}
+
+#continueButton a {
+  color: #281a29;
+  text-decoration: none;
+}
+
+#continueButton p {
+  font-size: 24px;
+}
+
+/* GAMESTART/LORE */
+#lore {
+  margin: auto;
+}
+
+#lore button {
+  width: 80px;
+  background-color: #fffdad;
+  color: #281a29;
+  font-size: 16px;
+}
+
+#lore p {
+  text-align: left;
+  margin-left: 10px;
+}
+
+#lore a {
+  color: #281a29;
+  font-size: 20px;
+  background-color: #fffdad;
+  text-decoration: none;
+}
+
+/* SIDEBAR */
+.sidebar {
+  padding: 0;
+  margin: 0;
+  min-width: 15%;
+  height: 100%;
+  text-align: left;
+  float: left;
+  background-color: #50394c;
+  color: #fffdad;
+  border-right: 1px solid #fffdad;
+}
+
+.sidebar .navbar, #navbarTitle {
+  background-color: #281a29;
+  color: #fffdad;
+  padding: 10px 0 10px 2px;
+  border: 1px solid #fffdad;
+}
+
+.sidebar .navbar:hover {
+  background-color: #50394c;
+}
+
+.sidebar h2, .resources p {
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar a {
+  text-decoration: none;
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+}
+
+.resources img {
+  height: 32px;
+  width: 32px;
+}
+
+
+/* GAMESPACE */
+.gamespace, .gamespace h1 {
+  padding: 0;
+  margin: 0;
+}
+
+.gamespace h1 {
+  text-align: center;
+}
