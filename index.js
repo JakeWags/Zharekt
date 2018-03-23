@@ -2,7 +2,7 @@ class Character {
   constructor() {
     this._logs = 0;
     this._stone = 0;
-    this._coins = 0;
+    this._coins = 100;
   }
 
   get logs () {
@@ -41,3 +41,5 @@ class Character {
 }
 
 var player = new Character();
+
+player.update();
