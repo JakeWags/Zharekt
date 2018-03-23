@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="../index.css">
+    <title>Market</title>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <section id="resourcePanel">
+        <div class="resources">
+          <img src="../images/coins.svg" alt="coins">
+          <span id="coins">0</span>
+        </div>
+        <div class="resources">
+          <img src="../images/logs.svg" alt="logs">
+          <span id="logs">10</span>
+        </div>
+      </section>
+
+      <a href="../gameHome.html">
+        <div class="navbar">
+          Homepage
+        </div>
+      </a>
+      <a href="market.html">
+        <div class="navbar">
+          The Market
+        </div>
+      </a>
+      <a href="index.html">
+        <div class="navbar">
+          Lorem ipsum 2
+        </div>
+      </a>
+      <a href="index.html">
+        <div class="navbar">
+          Lorem ipsum 3
+        </div>
+      </a>
+    </aside>
+
+    <section id="market">
+      <h2>The Market</h2>
+      <div class="marketSell">
+        <button class="sellItems" onclick="player.sellItem('logs', 10, 10)">Sell</button>
+        <span id="listing1">Sell 10 logs for 100 coins.</span>
+      </div>
+    </section>
+
+    <script type="text/javascript" src="../index.js"></script>
+  </body>
+</html>

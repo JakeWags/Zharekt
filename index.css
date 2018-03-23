@@ -16,6 +16,7 @@ body p {
   text-align: center;
 }
 
+
 /* HOMEPAGE */
 #homepage {
   overflow: hidden;
@@ -52,6 +53,7 @@ body p {
   font-size: 24px;
 }
 
+
 /* GAMESTART/LORE */
 #lore {
   padding-top: 10px;
@@ -76,6 +78,7 @@ body p {
   background-color: #fffdad;
   text-decoration: none;
 }
+
 
 /* SIDEBAR */
 .sidebar {
@@ -127,4 +130,26 @@ body p {
 
 .gamespace h1 {
   text-align: center;
+}
+
+.gamespace p {
+  padding-left: 150px;
+}
+
+
+/* JOB BOARD */
+#market, #market h2 {
+  margin:0;
+  padding:0;
+}
+
+#market h2 {
+  text-align: center;
+}
+
+#market button {
+  background-color: #fffdad;
+  color: #281a91;
+  font-size: 16px;
+  width: 100px;
 }
