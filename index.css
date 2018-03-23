@@ -18,6 +18,7 @@ body p {
 
 /* HOMEPAGE */
 #homepage {
+  overflow: hidden;
   text-align: center;
 }
 
@@ -53,6 +54,7 @@ body p {
 
 /* GAMESTART/LORE */
 #lore {
+  padding-top: 10px;
   margin: auto;
 }
 
