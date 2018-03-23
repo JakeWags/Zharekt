@@ -1,6 +1,6 @@
 class Character {
   constructor() {
-    this._logs = 10;
+    this._logs = 0;
     this._stone = 0;
     this._coins = 0;
   }
