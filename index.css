@@ -16,6 +16,24 @@ body p {
   text-align: center;
 }
 
+.actionButton {
+  background-color: #281a29;
+  color: #fffdad;
+  font-size: 16px;
+  width: 100px;
+  border: 2px solid #fffdad;
+}
+
+.actionButton:hover {
+  background-color: #50394c;
+}
+
+.actionDiv {
+  background-color: #50394c;
+  border: 1px solid #fffdad;
+  padding: 20px 0;
+  margin-bottom: 10px;
+}
 
 /* HOMEPAGE */
 #homepage {
@@ -83,7 +101,7 @@ body p {
 /* SIDEBAR */
 .sidebar {
   padding: 0;
-  margin: 0;
+  margin: 0 10px 0 0;
   min-width: 15%;
   height: 100%;
   text-align: left;
@@ -96,7 +114,7 @@ body p {
 .sidebar .navbar, #navbarTitle {
   background-color: #281a29;
   color: #fffdad;
-  padding: 10px 0 10px 2px;
+  padding: 10px 4px;
   border: 1px solid #fffdad;
 }
 
@@ -132,10 +150,6 @@ body p {
   text-align: center;
 }
 
-.gamespace p {
-  padding-left: 150px;
-}
-
 
 /* JOB BOARD */
 #market, #market h2 {
@@ -144,12 +158,17 @@ body p {
 }
 
 #market h2 {
+  padding-bottom: 20px;
   text-align: center;
 }
 
-#market button {
-  background-color: #fffdad;
-  color: #281a91;
-  font-size: 16px;
-  width: 100px;
+/* RESOURCEGATHER */
+.resourceGather, .resourceGather h2, .resourceGather h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.resourceGather h2 {
+  padding-bottom: 20px;
+  text-align: center;
 }

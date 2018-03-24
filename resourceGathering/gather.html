@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="../index.css">
-    <title>Market</title>
+    <title>Woodcutting</title>
   </head>
   <body>
     <aside class="sidebar">
@@ -24,7 +24,7 @@
           Homepage
         </div>
       </a>
-      <a href="market.html">
+      <a href="../market/market.html">
         <div class="navbar">
           The Market
         </div>
@@ -34,21 +34,21 @@
           Gather Resources
         </div>
       </a>
-      <a href="index.html">
+      <a href="../index.html">
         <div class="navbar">
           Lorem ipsum 3
         </div>
       </a>
     </aside>
 
-    <section id="market">
-      <h2>The Market</h2>
+    <section class="resourceGather">
+      <h2>Gather Resources</h2>
       <div class="actionDiv">
-        <button class="actionButton" onclick="player.sellItem('logs', 10, 10)">Sell</button>
-        <span id="listing1">Sell 10 logs for 100 coins.</span>
+        <button class="actionButton" onclick="resource.cutLog()">Cut Logs</button>
+        <span id="cuttingWood">Cut some wood.</span>
       </div>
     </section>
 
     <script type="text/javascript" src="../index.js"></script>
   </body>
-</html>
+  </html>

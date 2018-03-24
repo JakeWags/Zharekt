@@ -1,8 +1,10 @@
 class Character {
   constructor() {
-    this._logs = 0;
-    this._stone = 0;
-    this._coins = 100;
+    this._coins = parseInt(localStorage.getItem('coins')) || 100;
+    this._logs = parseInt(localStorage.getItem('logs')) ||0;
+    this._stone = parseInt(localStorage.getItem('stone')) || 0;
+    this._woodCuttingLevel = parseInt(localStorage.getItem('woodCuttingLevel')) || 1;
+    this._miningLevel = parseInt(localStorage.getItem('miningLevel')) || 1;
   }
 
   get logs () {
@@ -18,8 +20,23 @@ class Character {
   }
 
   update() {
+    this.updateStorage();
     document.getElementById('coins').innerHTML = this._coins;
     document.getElementById('logs').innerHTML = this._logs;
+  }
+
+  updateStorage() {
+    localStorage.setItem('coins', this._coins);
+    localStorage.setItem('logs', this._logs);
+    localStorage.setItem('stone', this._stone);
+    localStorage.setItem('woodCuttingLevel', this._woodCuttingLevel);
+    localStorage.setItem('miningLevel', this._miningLevel);
+  }
+
+  reset() {
+    localStorage.clear();
+    window.location.reload (false);
+
   }
 
   sellItem(item, amount, pricePer) {
@@ -40,6 +57,32 @@ class Character {
   }
 }
 
+
+class ResourceGather extends Character {
+  constructor() {
+    super();
+      this.currentlyGathering = false;
+  }
+
+  cutLog() {
+
+    if (!(this.currentlyGathering)) {
+      this.currentlyGathering = true;
+      setTimeout(() =>  { //arrow syntax removes the scope inside of the timeout function
+        console.log('beginning logs: ' + this._logs);
+        this._logs++;
+        this.currentlyGathering = false;
+        console.log(this._logs);
+        this.update();
+      }, 1000);
+    } else {
+      alert('Already gathering.');
+    }
+  }
+}
+
 var player = new Character();
+var resource = new ResourceGather();
 
 player.update();
+resource.update();
