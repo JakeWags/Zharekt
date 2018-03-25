@@ -68,11 +68,13 @@ class ResourceGather extends Character {
 
     if (!(this.currentlyGathering)) {
       this.currentlyGathering = true;
+      document.getElementById('cuttingWood').innerHTML = 'Chopping...';
       setTimeout(() =>  { //arrow syntax removes the scope inside of the timeout function
         console.log('beginning logs: ' + this._logs);
         this._logs++;
         this.currentlyGathering = false;
         console.log(this._logs);
+        document.getElementById('cuttingWood').innerHTML = 'Cut some wood.';
         this.update();
       }, 1000);
     } else {
