@@ -1,6 +1,6 @@
 class Character {
   constructor() {
-    this._coins = parseInt(localStorage.getItem('coins')) || 100;
+    this._coins = parseInt(localStorage.getItem('coins')) || 0;
     this._logs = parseInt(localStorage.getItem('logs')) ||0;
     this._stone = parseInt(localStorage.getItem('stone')) || 0;
     this._woodCuttingLevel = parseInt(localStorage.getItem('woodCuttingLevel')) || 1;
