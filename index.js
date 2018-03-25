@@ -7,6 +7,8 @@ class Character {
     this._miningLevel = parseInt(localStorage.getItem('miningLevel')) || 1;
     this._woodCuttingXp = parseInt(localStorage.getItem('woodCuttingXp')) || 0;
     this._woodCuttingXpNeeded = Math.floor((this._woodCuttingLevel * 10) * (100 + (this._woodCuttingLevel * 10) * Math.sqrt(this._woodCuttingLevel)));
+    this._totalCoinsGained = parseInt(localStorage.getItem('totalCoinsGained')) || 0;
+    this._totalLogsChopped = parseInt(localStorage.getItem('totalLogsChopped')) || 0;
     this.clicks = 0;
   }
 
@@ -24,7 +26,11 @@ class Character {
 
   update() {
     this.updateLevel();
+    this.updateDisplay();
     this.updateStorage();
+  }
+
+  updateDisplay() {
     document.getElementById('coins').innerHTML = this._coins;
     document.getElementById('logs').innerHTML = this._logs;
   }
@@ -36,7 +42,8 @@ class Character {
     localStorage.setItem('woodCuttingLevel', this._woodCuttingLevel);
     localStorage.setItem('miningLevel', this._miningLevel);
     localStorage.setItem('woodCuttingXp', this._woodCuttingXp);
-  //  localStorage.setItem('woodCuttingXpNeeded', this._woodCuttingXpNeeded);
+    localStorage.setItem('totalCoinsGained', this._totalCoinsGained);
+    localStorage.setItem('totalLogsChopped', this._totalLogsChopped);
   }
 
   updateLevel() {
@@ -48,8 +55,10 @@ class Character {
   }
 
   reset() {
-    localStorage.clear();
-    window.location.reload (false);
+    if(confirm('Are you sure? This is not reversable.')) {
+      localStorage.clear();
+      window.location.reload (false);
+    }
   }
 
   sellItem(item, amount, pricePer) {
@@ -61,6 +70,7 @@ class Character {
           if(this.clicks === 2) {
             this._logs -= amount;
             this._coins += amount * pricePer;
+            this._totalCoinsGained += amount * pricePer;
             this.clicks = 0;
             document.getElementById('sell1').innerHTML = 'Sell';
             this.update();
@@ -88,7 +98,8 @@ class ResourceGather extends Character {
       this._currentlyGathering = true;
       document.getElementById('cuttingWood').innerHTML = 'Chopping...';
       setTimeout(() =>  { //arrow syntax removes the scope inside of the timeout function
-        this._logs += this._woodCuttingLevel; //one log per level
+        this._logs, this._totalLogsChopped += this._woodCuttingLevel; //one log per level
+      //  this._totalLogsChopped += this._woodCuttingLevel;
         this._woodCuttingXp += this._woodCuttingLevel * 10; //10 xp per log
         this._currentlyGathering = false;
         document.getElementById('cuttingWood').innerHTML = 'Cut some wood.';
@@ -100,7 +111,26 @@ class ResourceGather extends Character {
   }
 }
 
+class PlayerStats extends Character {
+  constructor() {
+    super();
+  }
+
+ /*
+    javascript cant update the display of things on
+    different pages so this has to have its own class
+ */
+  updateStats() {
+    document.getElementById('totalCoinsGained').innerHTML = this._totalCoinsGained;
+    document.getElementById('totalLogsChopped').innerHTML = this._totalLogsChopped;
+    document.getElementById('woodCuttingLevel').innerHTML = this._woodCuttingLevel;
+    document.getElementById('woodCuttingXp').innerHTML = this._woodCuttingXp;
+    document.getElementById('woodCuttingXpNeeded').innerHTML = this._woodCuttingXpNeeded;
+  }
+}
+
 var player = new Character();
 var resource = new ResourceGather();
+var playerStats = new PlayerStats();
 
 player.update();

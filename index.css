@@ -12,6 +12,11 @@ body p {
   font-size: 16px;
 }
 
+body h2 {
+  padding: 0;
+  margin: 0;
+}
+
 .container {
   text-align: center;
 }
@@ -171,4 +176,15 @@ body p {
 .resourceGather h2 {
   padding-bottom: 20px;
   text-align: center;
+}
+
+
+/* PLAYERSTATS */
+#playerStats h2 {
+  text-align: center;
+}
+
+#playerStats #resetButton, #playerStats #updateDisplay {
+  min-width: 50%;
+  max-width: 80%;
 }

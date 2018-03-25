@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="index.css">
         <link rel="icon" href="https://images.clipartlogo.com/files/images/11/116544/skull-pixel_f.png">
-    <meta name="viewport" content="width=device-width">
-    <title>Zharekt</title>
+    <title>Woodcutting</title>
   </head>
-
   <body>
     <aside class="sidebar">
       <section id="resourcePanel">
         <div class="resources">
-          <img src="images/coins.svg">
-            <span id="coins">0</span>
+          <img src="images/coins.svg" alt="coins">
+          <span id="coins">0</span>
         </div>
         <div class="resources">
           <img src="images/logs.svg" alt="logs">
@@ -42,14 +42,21 @@
       </a>
     </aside>
 
-    <section class="gamespace">
-      <h1>Zharekt</h1>
-      <p>In Sertol Village there isn't much to do...
-        <br><br>
-         There is a local trade market in the towncenter, with a pub, general store, and blacksmith built around the square.
-         <br><br>
-         In the center of the market there are some stalls where merchants are buying and selling goods and resources.
-      </p>
+    <section id='playerStats'>
+      <h2>Player Stats</h2>
+      <div class="actionDiv">
+        <button class="actionButton" id="updateDisplay" onclick="playerStats.updateStats()">Update Display</button>
+      </div>
+      <div>
+        <p>Total coins gained: <span id="totalCoinsGained"></span></p>
+        <p>Total logs chopped: <span id="totalLogsChopped"></span></p>
+        <p>Woodcutting level: <span id="woodCuttingLevel"></span></p>
+        <p>Woodcutting xp: <span id="woodCuttingXp"></span></p>
+        <p>Woodcutting xp needed: <span id="woodCuttingXpNeeded"></span></p>
+      </div>
+      <div class="actionDiv">
+        <button class="actionButton" id="resetButton" onclick="player.reset()">Reset Character</button>
+    </div>
     </section>
 
     <script type="text/javascript" src="index.js"></script>
