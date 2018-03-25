@@ -26,13 +26,13 @@ class Character {
 
   update() {
     this.updateLevel();
-    this.updateDisplay();
     this.updateStorage();
+    document.getElementById('coins').innerHTML = this._coins;
+    document.getElementById('logs').innerHTML = this._logs;
   }
 
   updateDisplay() {
-    document.getElementById('coins').innerHTML = this._coins;
-    document.getElementById('logs').innerHTML = this._logs;
+
   }
 
   updateStorage() {
@@ -98,8 +98,8 @@ class ResourceGather extends Character {
       this._currentlyGathering = true;
       document.getElementById('cuttingWood').innerHTML = 'Chopping...';
       setTimeout(() =>  { //arrow syntax removes the scope inside of the timeout function
-        this._logs, this._totalLogsChopped += this._woodCuttingLevel; //one log per level
-      //  this._totalLogsChopped += this._woodCuttingLevel;
+        this._logs += this._woodCuttingLevel; //one log per level
+        this._totalLogsChopped += this._woodCuttingLevel;
         this._woodCuttingXp += this._woodCuttingLevel * 10; //10 xp per log
         this._currentlyGathering = false;
         document.getElementById('cuttingWood').innerHTML = 'Cut some wood.';
