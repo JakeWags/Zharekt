@@ -5,6 +5,8 @@ class Character {
     this._stone = parseInt(localStorage.getItem('stone')) || 0;
     this._woodCuttingLevel = parseInt(localStorage.getItem('woodCuttingLevel')) || 1;
     this._miningLevel = parseInt(localStorage.getItem('miningLevel')) || 1;
+    this._woodCuttingXp = parseInt(localStorage.getItem('woodCuttingXp')) || 0;
+    this._woodCuttingXpNeeded = Math.floor((this._woodCuttingLevel * 10) * (200 + (this._woodCuttingLevel * 10) * Math.sqrt(this._woodCuttingLevel)));
     this.clicks = 0;
   }
 
@@ -21,6 +23,7 @@ class Character {
   }
 
   update() {
+    this.updateLevel();
     this.updateStorage();
     document.getElementById('coins').innerHTML = this._coins;
     document.getElementById('logs').innerHTML = this._logs;
@@ -32,12 +35,20 @@ class Character {
     localStorage.setItem('stone', this._stone);
     localStorage.setItem('woodCuttingLevel', this._woodCuttingLevel);
     localStorage.setItem('miningLevel', this._miningLevel);
+    localStorage.setItem('woodCuttingXp', this._woodCuttingXp);
+  //  localStorage.setItem('woodCuttingXpNeeded', this._woodCuttingXpNeeded);
+  }
+
+  updateLevel() {
+    if(this._woodCuttingXp >= this._woodCuttingXpNeeded && this._woodCuttingLevel < 10) {
+      this._woodCuttingLevel++;
+      this._woodCuttingXpNeeded = Math.floor((this._woodCuttingLevel * 10) * (200 + (this._woodCuttingLevel * 10) * Math.sqrt(this._woodCuttingLevel)));
+    }
   }
 
   reset() {
     localStorage.clear();
     window.location.reload (false);
-
   }
 
   sellItem(item, amount, pricePer) {
@@ -68,17 +79,17 @@ class Character {
 class ResourceGather extends Character {
   constructor() {
     super();
-      this.currentlyGathering = false;
+      this._currentlyGathering = false;
   }
 
   cutLog() {
-
-    if (!(this.currentlyGathering)) {
-      this.currentlyGathering = true;
+    if (!(this._currentlyGathering)) {
+      this._currentlyGathering = true;
       document.getElementById('cuttingWood').innerHTML = 'Chopping...';
       setTimeout(() =>  { //arrow syntax removes the scope inside of the timeout function
-        this._logs++;
-        this.currentlyGathering = false;
+        this._logs += this._woodCuttingLevel; //one log per level
+        this._woodCuttingXp += this._woodCuttingLevel * 10; //10 xp per log
+        this._currentlyGathering = false;
         document.getElementById('cuttingWood').innerHTML = 'Cut some wood.';
         this.update();
       }, 1000);
@@ -92,4 +103,3 @@ var player = new Character();
 var resource = new ResourceGather();
 
 player.update();
-resource.update();
