@@ -182,6 +182,7 @@ body h2 {
 /* PLAYERSTATS */
 #playerStats h2 {
   text-align: center;
+  padding-bottom: 10px;
 }
 
 #playerStats #resetButton, #playerStats #updateDisplay {
