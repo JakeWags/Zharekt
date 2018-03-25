@@ -5,6 +5,7 @@ class Character {
     this._stone = parseInt(localStorage.getItem('stone')) || 0;
     this._woodCuttingLevel = parseInt(localStorage.getItem('woodCuttingLevel')) || 1;
     this._miningLevel = parseInt(localStorage.getItem('miningLevel')) || 1;
+    this.clicks = 0;
   }
 
   get logs () {
@@ -40,12 +41,18 @@ class Character {
   }
 
   sellItem(item, amount, pricePer) {
+    this.clicks++;
     switch (item) {
       case 'logs':
-        if(this._logs >= amount && confirm('Are you sure?')) {
-          this._logs -= amount;
-          this._coins += amount * pricePer;
-          this.update();
+        if(this._logs >= amount && this.clicks >= 1) {
+          document.getElementById('sell1').innerHTML = 'Confirm';
+          if(this.clicks === 2) {
+            this._logs -= amount;
+            this._coins += amount * pricePer;
+            this.clicks = 0;
+            document.getElementById('sell1').innerHTML = 'Sell';
+            this.update();
+          }
         } else {
           alert('Trade declined');
         }
@@ -70,10 +77,8 @@ class ResourceGather extends Character {
       this.currentlyGathering = true;
       document.getElementById('cuttingWood').innerHTML = 'Chopping...';
       setTimeout(() =>  { //arrow syntax removes the scope inside of the timeout function
-        console.log('beginning logs: ' + this._logs);
         this._logs++;
         this.currentlyGathering = false;
-        console.log(this._logs);
         document.getElementById('cuttingWood').innerHTML = 'Cut some wood.';
         this.update();
       }, 1000);
