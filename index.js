@@ -6,7 +6,7 @@ class Character {
     this._woodCuttingLevel = parseInt(localStorage.getItem('woodCuttingLevel')) || 1;
     this._miningLevel = parseInt(localStorage.getItem('miningLevel')) || 1;
     this._woodCuttingXp = parseInt(localStorage.getItem('woodCuttingXp')) || 0;
-    this._woodCuttingXpNeeded = Math.floor((this._woodCuttingLevel * 10) * (200 + (this._woodCuttingLevel * 10) * Math.sqrt(this._woodCuttingLevel)));
+    this._woodCuttingXpNeeded = Math.floor((this._woodCuttingLevel * 10) * (100 + (this._woodCuttingLevel * 10) * Math.sqrt(this._woodCuttingLevel)));
     this.clicks = 0;
   }
 
@@ -42,7 +42,8 @@ class Character {
   updateLevel() {
     if(this._woodCuttingXp >= this._woodCuttingXpNeeded && this._woodCuttingLevel < 10) {
       this._woodCuttingLevel++;
-      this._woodCuttingXpNeeded = Math.floor((this._woodCuttingLevel * 10) * (200 + (this._woodCuttingLevel * 10) * Math.sqrt(this._woodCuttingLevel)));
+      this._woodCuttingXpNeeded = Math.floor((this._woodCuttingLevel * 10) * (100 + (this._woodCuttingLevel * 10) * Math.sqrt(this._woodCuttingLevel)));
+      alert(`You leveled up to level ${this._woodCuttingLevel} woodcutting! You need ${this._woodCuttingXpNeeded} xp to level up again.`);
     }
   }
 
