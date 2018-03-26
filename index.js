@@ -197,7 +197,7 @@ class ResourceGather extends Character {
             this.update();
             this._currentlyGathering = false;
             document.getElementById('goFishing').innerHTML = 'Go fishing.';
-          }, 10000);
+          }, 7500);
         } else {
           alert('You have no bait.');
         }
