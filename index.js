@@ -65,12 +65,12 @@ class Character {
     if(this._woodCuttingXp >= this._woodCuttingXpNeeded && this._woodCuttingLevel < 10) {
       this._woodCuttingLevel++;
       this._woodCuttingXpNeeded = Math.floor((this._woodCuttingLevel * 10) * (100 + (this._woodCuttingLevel * 10) * Math.sqrt(this._woodCuttingLevel)));
-      alert(`You leveled up to level ${this._woodCuttingLevel} woodcutting! You need ${this._woodCuttingXpNeeded} xp to level up again.`);
+      alert(`You leveled up to level ${this._woodCuttingLevel} woodcutting! You need ${this._woodCuttingXpNeeded - this._woodcuttingXP} xp to level up again.`);
     }
     if(this._fishingXp >= this._fishingXpNeeded && this._fishingLevel < 10) {
       this._fishingLevel++;
-      this._fishingXpNeeded = Math.floor((this._woodCuttingLevel * 10) * (100 + (this._woodCuttingLevel * 10) * Math.sqrt(this._fishingLevel)));
-      alert(`You leveled up to level ${this._fishingLevel} fishing! You need ${this._fishingXpNeeded} xp to level up again.`);
+      this._fishingXpNeeded = Math.floor((this._fishingLevel * 10) * (100 + (this._fishingLevel * 10) * Math.sqrt(this._fishingLevel)));
+      alert(`You leveled up to level ${this._fishingLevel} fishing! You need ${this._fishingXpNeeded - this._fishingXp} xp to level up again.`);
     }
   }
 
