@@ -15,6 +15,14 @@
           <span id="coins">0</span>
         </div>
         <div class="resources">
+          <img src="../images/bait.svg" alt="bait">
+          <span id="bait">0</span>
+        </div>
+        <div class="resources">
+          <img src="../images/fish.svg" alt="fish">
+          <span id="fish">0</span>
+        </div>
+        <div class="resources">
           <img src="../images/logs.svg" alt="logs">
           <span id="logs">0</span>
         </div>
@@ -47,6 +55,18 @@
       <div class="actionDiv">
         <button class="actionButton" onclick="player.sellItem('logs', 10, .5)"><span id="sell1">Sell</span></button>
         <span id="listing1">Sell 10 logs for 5 coins.</span>
+      </div>
+      <div class="actionDiv">
+        <button class="actionButton" onclick="player.sellItem('fish', 1, 10)"><span id="sell2">Sell</span></button>
+        <span id="listing1">Sell 1 fish for 10 coins.</span>
+      </div>
+      <div class="actionDiv">
+        <button class="actionButton" onclick="player.buyItem('bait', 4, 5)"><span id="buy1">Buy</span></button>
+        <span id="listing3">Buy 4 bait for 20 coins.</span>
+      </div>
+      <div class="actionDiv">
+        <button class="actionButton" onclick="player.buyItem('fishingRod', 1, 500)"><span id="buy2">Buy</span></button>
+        <span id="listing4">Buy 1 fishing rod for 500 coins.</span>
       </div>
     </section>
 
