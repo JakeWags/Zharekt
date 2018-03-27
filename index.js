@@ -193,6 +193,7 @@ class ResourceGather extends Character {
               this._fishingXp += 100;
             } else {
               this._bait--;
+              alert('The fish took your bait');
             }
             this.update();
             this._currentlyGathering = false;
