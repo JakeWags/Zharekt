@@ -29,7 +29,7 @@ class Character {
     return this._logs;
   }
 
-  get stone () {
+  get fish () {
     return this._fish;
   }
 
@@ -92,7 +92,7 @@ class Character {
             this._coins += amount * pricePer;
             this._totalCoinsGained += amount * pricePer;
             this.clicks = 0;
-            document.getElementById('sell1').innerHTML = 'Sell';
+            document.getElementById('sell1').innerHTML = 'Sell all';
             this.update();
           }
         } else {
@@ -107,7 +107,7 @@ class Character {
               this._coins += amount * pricePer;
               this._totalCoinsGained += amount * pricePer;
               this.clicks = 0;
-              document.getElementById('sell2').innerHTML = 'Sell';
+              document.getElementById('sell2').innerHTML = 'Sell all';
               this.update();
             }
           } else {
@@ -197,7 +197,7 @@ class ResourceGather extends Character {
             this.update();
             this._currentlyGathering = false;
             document.getElementById('goFishing').innerHTML = 'Go fishing.';
-          }, 7500);
+          }, 7600 - this._fishingLevel * 100);
         } else {
           alert('You have no bait.');
         }
