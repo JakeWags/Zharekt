@@ -54,13 +54,13 @@
       <h2>The Market</h2>
       <div class="actionDiv">
       <button class="actionButton" onclick="player.sellItem('logs', 10, 1)">Sell</button>
-        <span id="listing1">Sell 10 logs for 10 coins.</span>
-      <button class="actionButton" class="" onclick="player.sellItem('logs', player.logs, 1)"><span id="sell1">Sell all</span></button>
+      <button class="actionButton" onclick="player.sellItem('logs', player.logs, 1)"><span id="sell1">Sell all</span></button>
+      <span id="listing1">Sell 10 logs for 10 coins.</span>
       </div>
       <div class="actionDiv">
         <button class="actionButton" onclick="player.sellItem('fish', 1, 40)">Sell</button>
+        <button class="actionButton" onclick="player.sellItem('fish', player.fish, 40)"><span id="sell2">Sell all</span></button>
         <span id="listing1">Sell 1 fish for 40 coins.</span>
-              <button class="actionButton" class="" onclick="player.sellItem('fish', player.fish, 40)"><span id="sell2">Sell all</span></button>
       </div>
       <div class="actionDiv">
         <button class="actionButton" onclick="player.buyItem('bait', 4, 8)"><span id="buy1">Buy</span></button>
