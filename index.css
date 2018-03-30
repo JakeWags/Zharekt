@@ -43,6 +43,13 @@ body h2 {
 .quantityButton {
   width: 40px;
   margin: 5px 0;
+  background-color: #50394c;
+  border: 2px solid #fffdad;
+  color: #fffdad;
+}
+
+.quantityButton:hover {
+  background-color: #281a29;
 }
 
 /* HOMEPAGE */

@@ -52,12 +52,14 @@
 
     <section id="market">
       <h2>The Market</h2>
-      <br>
-      Quantity:
-      <br>
-      <button class="actionButton quantityButton" onclick="market.changeQuantity(1)">1</button>
-      <button class="actionButton quantityButton" onclick="market.changeQuantity(10)">10</button>
-      <button class="actionButton quantityButton" onclick="market.changeQuantity(prompt('Quantity (must be whole number): '))">X</button>
+      <div id="quantitySelectorDiv">
+        <br>
+        Quantity:
+        <br>
+        <button class="quantityButton" onclick="market.changeQuantity(1)">1</button>
+        <button class="quantityButton" onclick="market.changeQuantity(10)">10</button>
+        <button class="quantityButton" onclick="market.changeQuantity(prompt('Quantity (must be whole number): '))">X</button>
+      </div>
       <div class="actionDiv">
         <button class="actionButton" onclick="market.sellItem('logs', .5)"><span id="sell1">Sell</span></button>
         <span id="listing1">Sell<span id="quantity1"> </span>logs for 5 coins each bundle.</span>
