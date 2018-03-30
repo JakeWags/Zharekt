@@ -173,9 +173,11 @@ class Market extends Character {
   }
 
   changeQuantity(quantity) {
-    this._quantity = parseInt(quantity);
-    console.log(this._quantity);
-    this.updateQuantity();
+    if (!(isNaN(quantity)) && quantity !== null) {
+      this._quantity = parseInt(quantity);
+      console.log(this._quantity);
+      this.updateQuantity();
+  }
   }
 }
 
