@@ -40,18 +40,6 @@ body h2 {
   margin-bottom: 10px;
 }
 
-.quantityButton {
-  width: 40px;
-  margin: 5px 0;
-  background-color: #50394c;
-  border: 2px solid #fffdad;
-  color: #fffdad;
-}
-
-.quantityButton:hover {
-  background-color: #281a29;
-}
-
 /* HOMEPAGE */
 #homepage {
   overflow: hidden;
@@ -174,16 +162,29 @@ body h2 {
 }
 
 
-/* JOB BOARD */
+/* MARKET */
 #market, #market h2 {
   margin:0;
   padding:0;
 }
 
 #market h2 {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   text-align: center;
 }
+
+.quantityButton {
+  width: 40px;
+  margin: 5px 0;
+  background-color: #50394c;
+  border: 2px solid #fffdad;
+  color: #fffdad;
+}
+
+.quantityButton:hover {
+  background-color: #281a29;
+}
+
 
 /* RESOURCEGATHER */
 .resourceGather, .resourceGather h2, .resourceGather h3 {
