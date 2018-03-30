@@ -40,6 +40,10 @@ body h2 {
   margin-bottom: 10px;
 }
 
+.quantityButton {
+  width: 40px;
+  margin: 5px 0;
+}
 
 /* HOMEPAGE */
 #homepage {

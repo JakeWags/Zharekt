@@ -21,7 +21,6 @@ class Character {
     this._totalFishCaught = parseInt(localStorage.getItem('totalFishCaught')) || 0;
 
     // OTHER
-    this.clicks = 0;
     this._totalCoinsGained = parseInt(localStorage.getItem('totalCoinsGained')) || 0;
   }
 
@@ -80,40 +79,61 @@ class Character {
       window.location.reload (false);
     }
   }
+}
 
-  sellItem(item, amount, pricePer) {
+class Market extends Character {
+  constructor() {
+    super();
+    this._quantity = 10;
+    this.clicks = 0;
+  }
+
+  get quantity() {
+    return this._quantity;
+  }
+
+  updateQuantity() {
+    document.getElementById('quantity1').innerHTML = ` ${this._quantity} `;
+    document.getElementById('quantity2').innerHTML = ` ${this._quantity} `;
+  }
+
+  sellItem(item, pricePer) {
     this.clicks++;
     switch (item) {
       case 'logs':
-        if(this._logs >= amount && this.clicks >= 1) {
-          document.getElementById('sell1').innerHTML = 'Confirm';
+        if(this._logs >= this._quantity && this.clicks >= 1) {
+          if(this._quantity % 10 === 0) {
+            document.getElementById('sell1').innerHTML = 'Confirm';
+            if(this.clicks === 2) {
+              this._logs -= this._quantity;
+              this._coins += this._quantity * pricePer;
+              this._totalCoinsGained += this._quantity * pricePer;
+              this.clicks = 0;
+              document.getElementById('sell1').innerHTML = 'Sell';
+              this.update();
+            }
+          } else {
+            alert('Logs can only be sold in bundles of 10');
+          }
+        } else {
+          alert('Trade declined');
+        }
+        break;
+      case 'fish':
+        if(this._fish >= this._quantity && this.clicks >= 1) {
+          document.getElementById('sell2').innerHTML = 'Confirm';
           if(this.clicks === 2) {
-            this._logs -= amount;
-            this._coins += amount * pricePer;
-            this._totalCoinsGained += amount * pricePer;
+            this._fish -= this._quantity;
+            this._coins += this._quantity * pricePer;
+            this._totalCoinsGained += this._quantity * pricePer;
             this.clicks = 0;
-            document.getElementById('sell1').innerHTML = 'Sell all';
+            document.getElementById('sell2').innerHTML = 'Sell';
             this.update();
           }
         } else {
           alert('Trade declined');
         }
         break;
-        case 'fish':
-          if(this._fish >= amount && this.clicks >= 1) {
-            document.getElementById('sell2').innerHTML = 'Confirm';
-            if(this.clicks === 2) {
-              this._fish -= amount;
-              this._coins += amount * pricePer;
-              this._totalCoinsGained += amount * pricePer;
-              this.clicks = 0;
-              document.getElementById('sell2').innerHTML = 'Sell all';
-              this.update();
-            }
-          } else {
-            alert('Trade declined');
-          }
-          break;
     }
   }
 
@@ -150,6 +170,12 @@ class Character {
         }
         break;
     }
+  }
+
+  changeQuantity(quantity) {
+    this._quantity = parseInt(quantity);
+    console.log(this._quantity);
+    this.updateQuantity();
   }
 }
 
@@ -234,6 +260,7 @@ class PlayerStats extends Character {
 }
 
 var player = new Character();
+var market = new Market();
 var resource = new ResourceGather();
 var playerStats = new PlayerStats();
 

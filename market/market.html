@@ -52,22 +52,26 @@
 
     <section id="market">
       <h2>The Market</h2>
+      <br>
+      Quantity:
+      <br>
+      <button class="actionButton quantityButton" onclick="market.changeQuantity(1)">1</button>
+      <button class="actionButton quantityButton" onclick="market.changeQuantity(10)">10</button>
+      <button class="actionButton quantityButton" onclick="market.changeQuantity(prompt('Quantity (must be whole number): '))">X</button>
       <div class="actionDiv">
-      <button class="actionButton" onclick="player.sellItem('logs', 10, 1)">Sell</button>
-      <button class="actionButton" onclick="player.sellItem('logs', player.logs, 1)"><span id="sell1">Sell all</span></button>
-      <span id="listing1">Sell 10 logs for 10 coins.</span>
+        <button class="actionButton" onclick="market.sellItem('logs', .5)"><span id="sell1">Sell</span></button>
+        <span id="listing1">Sell<span id="quantity1"> </span>logs for 5 coins each bundle.</span>
       </div>
       <div class="actionDiv">
-        <button class="actionButton" onclick="player.sellItem('fish', 1, 40)">Sell</button>
-        <button class="actionButton" onclick="player.sellItem('fish', player.fish, 40)"><span id="sell2">Sell all</span></button>
-        <span id="listing1">Sell 1 fish for 40 coins.</span>
+        <button class="actionButton" onclick="market.sellItem('fish', 30)"><span id="sell2">Sell</span></button>
+        <span id="listing1">Sell<span id="quantity2"> </span>fish for 30 coins each.</span>
       </div>
       <div class="actionDiv">
-        <button class="actionButton" onclick="player.buyItem('bait', 4, 8)"><span id="buy1">Buy</span></button>
+        <button class="actionButton" onclick="market.buyItem('bait', 4, 5)"><span id="buy1">Buy</span></button>
         <span id="listing3">Buy 4 bait for 32 coins.</span>
       </div>
       <div class="actionDiv">
-        <button class="actionButton" onclick="player.buyItem('fishingRod', 1, 500)"><span id="buy2">Buy</span></button>
+        <button class="actionButton" onclick="market.buyItem('fishingRod', 1, 500)"><span id="buy2">Buy</span></button>
         <span id="listing4">Buy 1 fishing rod for 500 coins.</span>
       </div>
     </section>
