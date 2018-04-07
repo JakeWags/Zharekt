@@ -52,9 +52,6 @@
 
     <section id='playerStats'>
       <h2>Player Stats</h2>
-      <div class="actionDiv">
-        <button class="actionButton" id="updateDisplay" onclick="playerStats.updateStats()">Update Display</button>
-      </div>
       <div>
         <p>Total coins gained: <span id="totalCoinsGained"></span></p>
         <p>Total logs chopped: <span id="totalLogsChopped"></span></p>
@@ -71,6 +68,11 @@
     </div>
     </section>
 
+    <script type="text/javascript">
+    window.onload = function(){
+      playerStats.updateStats();
+    }
+    </script>
     <script type="text/javascript" src="index.js"></script>
   </body>
 </html>

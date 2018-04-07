@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../index.css">
+        <link rel="icon" href="https://images.clipartlogo.com/files/images/11/116544/skull-pixel_f.png">
+    <meta name="viewport" content="width=device-width">
+    <title>Zharekt</title>
+  </head>
+
+  <body>
+    <aside class="sidebar">
+      <section id="resourcePanel">
+        <div class="resources">
+          <img src="../images/coins.svg" alt="coins">
+            <span id="coins">0</span>
+        </div>
+        <div class="resources">
+          <img src="../images/bait.svg" alt="bait">
+          <span id="bait">0</span>
+        </div>
+        <div class="resources">
+          <img src="../images/fish.svg" alt="fish">
+          <span id="fish">0</span>
+        </div>
+        <div class="resources">
+          <img src="../images/logs.svg" alt="logs">
+          <span id="logs">0</span>
+        </div>
+      </section>
+
+      <a href="../gameHome.html">
+        <div class="navbar">
+          Homepage
+        </div>
+      </a>
+      <a href="../playerStats.html">
+        <div class="navbar">
+          Player Stats
+        </div>
+      </a>
+      <a href="../market/market.html">
+        <div class="navbar">
+          The Market
+        </div>
+      </a>
+      <a href="../resourceGathering/gather.html">
+        <div class="navbar">
+          Gather Resources
+        </div>
+      </a>
+      <a href="arena.html">
+        <div class="navbar current">
+          Arena
+        </div>
+      </a>
+    </aside>
+
+    <section id="arena">
+      <h2>Arena</h2>
+      <div class="actionDiv">
+        <button class="actionButton" id='newEnemy' onclick="combat.newEnemy()">New Enemy</button>
+        Summons a new competetor for you to fight!
+      </div>
+      <div>
+        <p>
+        Your HP: <span id="playerHP">20</span>
+          <br>
+        Enemy HP: <span id="enemyHP"></span>
+      </p>
+      </div>
+      <div class="actionDiv" id="combatDiv">
+        <button class="actionButton" onclick="combat.attack()">Attack</button>
+        <button class="actionButton" onclick="combat.rest()">Rest</button>
+        <p id="playerCombatDescription">
+        </p>
+        <p id="enemyCombatDescription">
+        </p>
+      </div>
+    </section>
+
+    <script type="text/javascript">
+    window.onload = function(){
+        combat.updateCombatDisplay();
+    }
+    </script>
+    <script type="text/javascript" src="../index.js"></script>
+  </body>
+</html>

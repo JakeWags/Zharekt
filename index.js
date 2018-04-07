@@ -20,6 +20,10 @@ class Character {
     this._fishingXpNeeded = Math.floor((this._fishingLevel * 10) * (100 + (this._fishingLevel * 10) * Math.sqrt(this._fishingLevel)));
     this._totalFishCaught = parseInt(localStorage.getItem('totalFishCaught')) || 0;
 
+    // COMBAT
+    this._attackLevel = parseInt(localStorage.getItem('attackLevel')) || 1;
+    this._attackXp = parseInt(localStorage.getItem('attackXp')) || 0;
+
     // OTHER
     this._totalCoinsGained = parseInt(localStorage.getItem('totalCoinsGained')) || 0;
   }
@@ -58,6 +62,8 @@ class Character {
     localStorage.setItem('totalLogsChopped', this._totalLogsChopped);
     localStorage.setItem('totalFishCaught', this._totalFishCaught);
     localStorage.setItem('fishingRod', this._hasFishingRod);
+    localStorage.setItem('attackLevel', this._attackLevel);
+    localStorage.setItem('attackXp', this._attackXp);
   }
 
   updateLevel() {
@@ -239,15 +245,116 @@ class ResourceGather extends Character {
   }
 }
 
+class Arena extends Character {
+  constructor() {
+    super();
+    this.player = {
+      maxHit: this._attackLevel + 2, //base of 3 max hit max of 12
+      chanceToHit: 75 + 1 + (this._attackLevel * 2), //75% base hit chance + double attackLevel
+      maxHP: 10,
+      currentHP: 10
+    }
+    this.enemy = {
+      maxHit: parseInt(localStorage.getItem('enemyMaxHit')) || 0,
+      maxHP: parseInt(localStorage.getItem('enemyMaxHP')) || 0,
+      currentHP: parseInt(localStorage.getItem('enemyCurrentHP')) || 0,
+      hasEnemy: localStorage.getItem('hasEnemy') || false
+    }
+  }
+
+  updateCombatDisplay() {
+    this.updateEnemyStorage();
+    document.getElementById('playerHP').innerHTML = this.player.currentHP;
+    document.getElementById('enemyHP').innerHTML = this.enemy.currentHP;
+  }
+
+  updateEnemyStorage() {
+    localStorage.setItem('enemyMaxHit', this.enemy.maxHit);
+    localStorage.setItem('enemyMaxHP', this.enemy.maxHP);
+    localStorage.setItem('enemyCurrentHP', this.enemy.currentHP);
+    localStorage.setItem('hasEnemy', this.enemy.hasEnemy);
+  }
+
+  newEnemy() {
+    if(!this.enemy.hasEnemy || this.enemy.hasEnemy === 'false') {
+      this.enemy.maxHit = this._attackLevel + Math.floor(Math.random() * 3 + 1);
+      this.enemy.maxHP = Math.floor(Math.random() * 10 + 10 + this._attackLevel);
+      this.enemy.currentHP = this.enemy.maxHP;
+      this.enemy.hasEnemy = true;
+      console.log(this.enemy.maxHP);
+      this.updateCombatDisplay();
+    } else {
+      alert('You already have an enemy!');
+    }
+  }
+
+  attack() {
+    if (this.player.currentHP > 0 && this.enemy.hasEnemy) {
+      var hitRoll = Math.floor(Math.random() * 100 + 1);
+      var damage = Math.floor(Math.random() * this.player.maxHit + 1);
+      if (hitRoll < this.player.chanceToHit) {
+      this.enemy.currentHP -= damage;
+        var hitOrMiss = 'hit';
+        if (this.enemy.currentHP <= 0) {
+          this.enemy.currentHP = 0;
+          this.enemy.hasEnemy = false;
+          this._coins += 100;
+          this.update();
+        }
+      } else {
+        var hitOrMiss = 'missed';
+        var damage = 0;
+      }
+      this.updateCombatDisplay();
+      document.getElementById('playerCombatDescription').innerHTML = `You ${hitOrMiss} and did ${damage} damage to the enemy.`;
+      this.enemyAttack();
+    }
+  }
+
+  rest() {
+    var regainedHP = Math.floor(Math.random() * 10);
+    if (this.player.currentHP >= 0 && this.player.currentHP <= this.player.maxHP) {
+      this.player.currentHP += regainedHP;
+      if (this.player.currentHP > this.player.maxHP) {
+        this.player.currentHP = this.player.maxHP;
+      }
+      this.updateCombatDisplay();
+              document.getElementById('playerCombatDescription').innerHTML = 'You regained some health.'
+      if (this.enemy.hasEnemy) {
+        this.enemyAttack();
+    }
+  }
+  }
+
+  enemyAttack() {
+    var hitRoll = Math.floor(Math.random() * 100 + 1);
+    var damage = Math.floor(Math.random() * this.enemy.maxHit + 1);
+    if (hitRoll < this.player.chanceToHit) {
+      this.player.currentHP -= damage;
+      var hitOrMiss = 'hit';
+      if(this.player.currentHP <= 0) {
+        this.player.currentHP = this.player.maxHP;
+        this._coins = 0;
+        this.enemy.hasEnemy = false;
+        this.newEnemy();
+        this.update();
+        alert('You died and lost all your coins.');
+      }
+    } else {
+      var hitOrMiss = 'missed';
+      var damage = 0;
+    }
+    this.updateCombatDisplay();
+    document.getElementById('enemyCombatDescription').innerHTML =  `The enemy ${hitOrMiss} and did ${damage} damage to you.`;
+  }
+
+}
+
 class PlayerStats extends Character {
   constructor() {
     super();
   }
 
- /*
-    javascript cant update the display of things on
-    different pages so this has to have its own class
- */
   updateStats() {
     document.getElementById('totalCoinsGained').innerHTML = this._totalCoinsGained;
     document.getElementById('totalLogsChopped').innerHTML = this._totalLogsChopped;
@@ -265,5 +372,6 @@ var player = new Character();
 var market = new Market();
 var resource = new ResourceGather();
 var playerStats = new PlayerStats();
+var combat = new Arena();
 
 player.update();

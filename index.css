@@ -227,3 +227,19 @@ body h2 {
   min-width: 50%;
   max-width: 80%;
 }
+
+
+/* ARENA */
+#arena h2 {
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+#arena {
+  height: 100%;
+}
+
+#arena #combatDiv {
+  height: 50%;
+  background-color: #11031e;
+}
