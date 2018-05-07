@@ -252,7 +252,7 @@ class Arena extends Character {
       maxHit: this._attackLevel + 2, //base of 3 max hit max of 12
       chanceToHit: 75 + 1 + (this._attackLevel * 2), //75% base hit chance + double attackLevel
       maxHP: 10,
-      currentHP: 10
+      currentHP: parseInt(localStorage.getItem('currentHP')) || 10
     }
     this.enemy = {
       maxHit: parseInt(localStorage.getItem('enemyMaxHit')) || 0,
@@ -269,6 +269,7 @@ class Arena extends Character {
   }
 
   updateEnemyStorage() {
+    localStorage.setItem('currentHP', this.player.currentHP);
     localStorage.setItem('enemyMaxHit', this.enemy.maxHit);
     localStorage.setItem('enemyMaxHP', this.enemy.maxHP);
     localStorage.setItem('enemyCurrentHP', this.enemy.currentHP);
@@ -347,7 +348,6 @@ class Arena extends Character {
     this.updateCombatDisplay();
     document.getElementById('enemyCombatDescription').innerHTML =  `The enemy ${hitOrMiss} and did ${damage} damage to you.`;
   }
-
 }
 
 class PlayerStats extends Character {
